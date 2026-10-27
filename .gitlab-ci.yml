@@ -1,0 +1,45 @@
+stages:
+  - build
+  - codestyle
+  - test
+  - deploy
+  - notify
+
+build:
+  stage: build
+  script:
+    - make all
+  artifacts:
+    paths:
+      - DO
+    expire_in: 30 days
+
+codestyle:
+  stage: codestyle
+  script:
+    - clang-format --dry-run --Werror code-samples/main.c > clang-format-output.txt 2>&1 || true
+  artifacts:
+    paths:
+      - clang-format-output.txt
+    expire_in: 30 days
+
+tests:
+  stage: test
+  script:
+    - chmod +x tests.sh && ./tests.sh
+
+deploy:
+  stage: deploy
+  dependencies:
+    - build
+    - codestyle
+    - tests
+  script:
+    - chmod +x deploy.sh
+    - ./deploy.sh
+<<<<<<< HEAD
+  when: manual
+  
+=======
+  when: manual
+>>>>>>> bfbc6b536e3350fcdeda63f7dcd5910e161915b8

@@ -38,8 +38,7 @@ The pipeline consists of four stages:
 ## Local run
 
 ```bash
-cd code-samples
-make
+make all
 ./DO 1        # Learning to work with Linux
 ./DO 7        # Incorrect number!
 ./DO          # Incorrect number of arguments!

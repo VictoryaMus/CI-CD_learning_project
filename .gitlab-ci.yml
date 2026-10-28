@@ -17,7 +17,7 @@ build:
 codestyle:
   stage: codestyle
   script:
-    - clang-format --dry-run --Werror code-samples/main.c > clang-format-output.txt 2>&1 || true
+    - clang-format --dry-run --Werror code-samples/main.c > clang-format-output.txt 2>&1
   artifacts:
     paths:
       - clang-format-output.txt
